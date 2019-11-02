@@ -5,25 +5,20 @@ var MessagesView = {
 
   initialize: function () {
     Parse.readAll((data) => {
-      // examine the response from the server request:
-      // console.log('Hello from MessagesView', data);
-
-      this.renderMessage(data.results);
+      let results = data.results;
+      for (let i = 0; i < results.length; i++) {
+        if ((results[i].username && results[i].roomname) && results[i].text) {
+          let message = new Messages(results[i].username, results[i].roomname, results[i].text);
+          this.renderMessage(message);
+        }
+      }
     });
 
   },
 
-  renderMessage: function (results) {
+  renderMessage: function (msg) {
     let html = '';
-    for (let i = 0; i < results.length; i++) {
-      if ((results[i].username && results[i].roomname) && results[i].text) {
-        // if(   ) {
-        //   break;
-        // }
-        html += MessageView.render(results[i]);
-      }
-      this.lastTimeStamp = results[0].createdAt;
-      $('#chats').append(html);
-    }
+    html = MessageView.render(msg);
+    $('#chats').append(html);
   }
 };

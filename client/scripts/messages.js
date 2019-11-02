@@ -1,14 +1,5 @@
-var Messages = {
-
-  username: 'J & A',
-  roomname: 'room',
-  text: 'hey hey hey'
-  // text: input
-
-
+var Messages = function(username, roomname, text) {
+  this.username = username;
+  this.roomname = roomname;
+  this.text = text;
 };
-
-// on submit
-// Parse.create(msgObj, func,) {
-
-// }
