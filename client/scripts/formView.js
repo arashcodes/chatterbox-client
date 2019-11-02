@@ -8,11 +8,12 @@ var FormView = {
 
   handleSubmit: function(event) {
     var inputText = $('#message').val();
-    Parse.create({username: App.username, text: inputText, roomname: 'E 5-6'});
+    Parse.create({username: App.username, text: inputText, roomname: Rooms.currentRoom});
     Parse.readAll((data) => {
       MessagesView.renderMessage(data.results);
     });
     // Stop the browser from submitting the form
+    inputText = '';
     event.preventDefault();
     // console.log('click!');
   },

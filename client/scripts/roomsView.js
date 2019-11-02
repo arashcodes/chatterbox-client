@@ -11,8 +11,9 @@ var RoomsView = {
   renderRoom: function() {
     let input = $('#room-input').val();
     Rooms.addRoom(input);
+    Rooms.currentRoom = input;
     RoomsView.$select.append('<option>' + input + '</option>');
-
+    
     // event.preventDefault();
     console.log('add room clicked');
   }
